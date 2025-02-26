@@ -69,6 +69,18 @@ async function main() {
         res.render("history", { videos: historyResponse.data.history });
     });
 
+    app.use("/advertise", express.static(path.join(__dirname, "../advertise")));
+
+    app.get("/advertise", (req, res) => {
+        const ads = [
+            { name: "Lazada", image: "/advertise/l.png", url: "https://www.lazada.com" },
+            { name: "Shopee", image: "/advertise/s.png", url: "https://www.shopee.com" },
+            { name: "Kaidee", image: "/advertise/k.png", url: "https://www.kaidee.com" }
+        ];
+
+        res.render("advertise", { ads });
+    });
+
     //
     // HTTP GET route that streams video to the user's browser.
     //
